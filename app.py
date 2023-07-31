@@ -1,5 +1,6 @@
 from flask import Flask
 from config import app_config
+from models.interfaces.base_model import database, initialize_database
 
 def create_app():
     # Create and configure the Flask app instance
@@ -12,6 +13,10 @@ def create_app():
 
     app.register_blueprint(coupon_bp, url_prefix='/api/coupon')
     app.register_blueprint(credit_card_bp, url_prefix='/api/credit_card')
+
+    # Call the function to initialize the database
+    with app.app_context():
+        initialize_database(app)
 
     return app
 

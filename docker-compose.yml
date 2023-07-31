@@ -11,7 +11,8 @@ services:
       - ./card-coupon-db/production:/app/card-coupon-db
     ports:
       - "5500:5000"
-  
+    working_dir: /app  # Set the working directory inside the container to /app
+
   testing:
     build:
       context: .
@@ -22,3 +23,4 @@ services:
       - ./card-coupon-db/testing:/app/card-coupon-db
     ports:
       - "5555:5000"
+    working_dir: /app  # Set the working directory inside the container to /app
