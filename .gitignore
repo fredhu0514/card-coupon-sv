@@ -1,6 +1,2 @@
-a*
-c*
-m*
-t*
-d*
-r*
+.DS_Store
+__pycache__
