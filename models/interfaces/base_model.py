@@ -1,8 +1,7 @@
-from flask import current_app
 from peewee import Model, SqliteDatabase
 
-# The `database` variable will be initialized later within the application context.
-database = None
+# Define the database variable
+database = SqliteDatabase(None)
 
 class BaseModel(Model):
     """
@@ -14,9 +13,14 @@ class BaseModel(Model):
     class Meta:
         database = database
 
-# Import this after defining the BaseModel to avoid circular import
-from app import app
+def initialize_database(app):
+    # Import the models here to avoid circular import
+    from models.credit_card import CreditCard
+    from models.coupon import Coupon
 
-# Initialize the database with the current app's configuration
-with app.app_context():
-    database = SqliteDatabase(current_app.config['DATABASE_URI'])
+    # Connect to the database
+    database.init(app.config['DATABASE_URI'])
+    database.connect()
+
+    # Create the tables if they don't exist
+    database.create_tables([CreditCard, Coupon])
