@@ -24,3 +24,15 @@ services:
     ports:
       - "5555:5000"
     working_dir: /app  # Set the working directory inside the container to /app
+
+  development:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      FLASK_ENV: development
+    volumes:
+      - ./card-coupon-db/development:/app/card-coupon-db
+    ports:
+      - "5050:5000"
+    working_dir: /app  # Set the working directory inside the container to /app
