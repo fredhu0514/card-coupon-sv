@@ -36,8 +36,8 @@ def create_credit_card():
         filename = secure_filename(f"{secrets.token_hex(16)}.png")
 
         # Determine the path to store the image based on the environment
-        image_folder = app.config["UPLOAD_FOLDER"] # TODO: Need to change the UPLOAD_FOLDER in different env.
-        image_path = os.path.join(image_folder, "credit_card_images", filename)
+        image_folder = app.app.config["UPLOAD_FOLDER"] # TODO: Need to change the UPLOAD_FOLDER in different env.
+        image_path = os.path.join(image_folder, filename)
 
         # Save the image file to the appropriate directory
         image_file.save(image_path)
