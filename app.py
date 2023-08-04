@@ -1,6 +1,6 @@
 from flask import Flask
 from config import app_config
-from models.interfaces.base_model import database, initialize_database
+from models.interfaces.base_model import initialize_database
 
 def create_app():
     # Create and configure the Flask app instance
