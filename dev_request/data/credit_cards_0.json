@@ -1,0 +1,72 @@
+[
+    {
+        "name": "Discover it® Cash Back",
+        "issuer": "Discover",
+        "image_path": "discover_it_cash_back",
+        "system": "Discover",
+        "cobranded": ""
+    },
+    {
+        "name": "Citi Custom Cash℠",
+        "issuer": "Citi",
+        "image_path": "citi_custom_cash",
+        "system": "Mastercard",
+        "cobranded": ""
+    },
+    {
+        "name": "Citi Double Cash®",
+        "issuer": "Citi",
+        "image_path": "citi_double_cash",
+        "system": "Mastercard",
+        "cobranded": ""
+    },
+    {
+        "name": "Chase Freedom Flex℠",
+        "issuer": "Chase",
+        "image_path": "chase_freedom_flex",
+        "system": "Mastercard",
+        "cobranded": ""
+    },
+    {
+        "name": "Chase Freedom Unlimited®",
+        "issuer": "Chase",
+        "image_path": "chase_freedom_unlimited",
+        "system": "Visa",
+        "cobranded": ""
+    },
+    {
+        "name": "Chase Freedom Rise℠",
+        "issuer": "Chase",
+        "image_path": "chase_freedom_rise",
+        "system": "Visa",
+        "cobranded": ""
+    },
+    {
+        "name": "Chase Sapphire Preferred®",
+        "issuer": "Chase",
+        "image_path": "chase_sapphire_preferred",
+        "system": "Visa Signature",
+        "cobranded": ""
+    },
+    {
+        "name": "Chase Sapphire Reserve®",
+        "issuer": "Chase",
+        "image_path": "chase_sapphire_reserve",
+        "system": "Visa Infinite",
+        "cobranded": ""
+    },
+    {
+        "name": "Amazon Visa",
+        "issuer": "Chase",
+        "image_path": "chase_amazon",
+        "system": "Visa Signature",
+        "cobranded": "Amazon.com Inc"
+    },
+    {
+        "name": "Prime Visa",
+        "issuer": "Chase",
+        "image_path": "chase_prime",
+        "system": "Visa Signature",
+        "cobranded": "Amazon.com Inc"
+    }
+]

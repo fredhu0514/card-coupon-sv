@@ -1,6 +1,6 @@
 import os
 import secrets
-from flask import Blueprint, jsonify, request
+from flask import jsonify, request
 from models.credit_card import CreditCard
 from werkzeug.utils import secure_filename
 import app
@@ -27,12 +27,14 @@ def create_credit_card():
     data = request.form
     image_file = request.files['image']
 
-    if not data or not all(key in data for key in ["card_name", "bank_name"]) or not image_file:
+    if not data or not all(key in data for key in ["name", "issuer", "system"]) or not image_file:
         return jsonify({"error": "Invalid or missing request data"}), 400
 
     try:
-        card_name = data["card_name"]
-        bank_name = data["bank_name"]
+        name = data["name"]
+        issuer = data["issuer"]
+        system = data["system"]
+        cobranded = data["cobranded"]
         filename = secure_filename(f"{secrets.token_hex(16)}.png")
 
         # Determine the path to store the image based on the environment
@@ -44,8 +46,10 @@ def create_credit_card():
 
         # Create the credit card record in the database
         credit_card = CreditCard.create(
-            card_name=card_name,
-            bank_name=bank_name,
+            name=name,
+            issuer=issuer,
+            system=system,
+            cobranded=cobranded,
             image_url=filename  # Store the image URL as the file path
         )
 
