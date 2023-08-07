@@ -1,6 +1,6 @@
 import os
 import secrets
-from flask import Blueprint, jsonify, request
+from flask import jsonify, request
 from models.credit_card import CreditCard
 from werkzeug.utils import secure_filename
 import app
@@ -33,7 +33,7 @@ def create_credit_card():
     try:
         name = data["name"]
         issuer = data["issuer"]
-        system = data["issuer"]
+        system = data["system"]
         cobranded = data["cobranded"]
         filename = secure_filename(f"{secrets.token_hex(16)}.png")
 
