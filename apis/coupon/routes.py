@@ -109,7 +109,8 @@ def get_all_available_coupons():
     Returns:
         Response: A JSON response containing a list of available coupons.
     """
-    card_id = request.args["card_id"]
+    data = request.form
+    card_id = data["card_id"]
     _datetime = request.args.get('datetime', datetime.now())
     coupons = Coupon.get_all_available_coupons(
         card_id=card_id,
@@ -133,11 +134,12 @@ def get_available_coupons_with_constraints():
     Returns:
         Response: A JSON response containing a list of available coupons.
     """
-    card_id = request.args["card_id"]
-    _datetime = request.args.get('datetime', datetime.now())
-    category = request.args.get('category', 0)
-    payment = request.args.get('payment', 0)
-    merchant = request.args.get('merchant', 0)
+    data = request.form
+    card_id = data["card_id"]
+    _datetime = data.get('datetime', datetime.now())
+    category = data.get('category', 0)
+    payment = data.get('payment', 0)
+    merchant = data.get('merchant', 0)
     coupons = Coupon.get_available_coupons_with_constraints(
         card_id=card_id,
         _datetime=_datetime,

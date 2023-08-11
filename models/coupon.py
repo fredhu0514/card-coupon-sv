@@ -38,6 +38,18 @@ class Coupon(BaseModel):
         table_name = "coupons"  # Specify the table name (optional, default would be 'coupon')
 
     @classmethod
+    def CouponData(cls, id, rate, lower_limit, upper_limit, category, payment, merchant):
+        return {
+            "id": id,
+            "rate": rate,
+            "lower_limit": lower_limit,
+            "upper_limit": upper_limit,
+            "category": category,
+            "payment": payment,
+            "merchant": merchant
+        }
+
+    @classmethod
     def get_all_available_coupons(cls, card_id, _datetime):
         """
         Get all available coupons associated with the specified credit card.
@@ -63,7 +75,15 @@ class Coupon(BaseModel):
             cls.card_id == card_id,
         )
 
-        return [CouponData(**coupon._data) for coupon in coupons_data]
+        return [cls.CouponData(
+            coupon.id,
+            coupon.rate,
+            coupon.lower_limit,
+            coupon.upper_limit,
+            coupon.category,
+            coupon.payment,
+            coupon.merchant
+        ) for coupon in coupons_data]
     
     @classmethod
     def get_available_coupons_with_constraints(
@@ -96,7 +116,15 @@ class Coupon(BaseModel):
             cls.merchant == 0,
         ).order_by(-cls.rate).limit(1)
 
-        coupons_general = [CouponData(**coupon._data) for coupon in general_query]
+        coupons_general = [cls.CouponData(
+            coupon.id,
+            coupon.rate,
+            coupon.lower_limit,
+            coupon.upper_limit,
+            coupon.category,
+            coupon.payment,
+            coupon.merchant
+        ) for coupon in general_query]
 
         query = cls.select().where(
             cls.start_datetime <= _datetime,
@@ -107,4 +135,12 @@ class Coupon(BaseModel):
             cls.merchant == merchant if merchant != 0 else True,
         ).order_by(cls.category, cls.payment, cls.merchant)
 
-        return coupons_general + [CouponData(**coupon._data) for coupon in query]
+        return coupons_general + [cls.CouponData(
+            coupon.id,
+            coupon.rate,
+            coupon.lower_limit,
+            coupon.upper_limit,
+            coupon.category,
+            coupon.payment,
+            coupon.merchant
+        ) for coupon in query]
